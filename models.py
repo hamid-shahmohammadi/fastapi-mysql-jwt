@@ -21,7 +21,7 @@ class UserModel(_database.Base):
 
 
 
-class UserModel(_database.Base):
+class PostModel(_database.Base):
     __tablename__="posts"   
     id=_sqlalchemy.Column(_sqlalchemy.Integer,primary_key=True,index=True) 
     user_id=_sqlalchemy.Column(_sqlalchemy.Integer,_sqlalchemy.ForeignKey("users.id"))
