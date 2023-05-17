@@ -1,5 +1,5 @@
 import pydantic as _pydantic
-import datetime as _datetime
+from datetime import datetime
 
 class UserBase(_pydantic.BaseModel):
     email: str
@@ -13,9 +13,10 @@ class UserRequest(UserBase):
     class Config:
         orm_mode=True   
 
-class UserRequest(UserBase):
+class UserResponse(UserBase):
     id:int
-    created_at : _datetime.datetime 
+    created_at: datetime = datetime.now()
+    
 
     class Config:
         orm_mode=True   
@@ -33,7 +34,7 @@ class PostRequest(PostBase):
 class PostResponse(PostBase):
     id: int
     user_id: int
-    created_at: _datetime.datetime
+    created_at: datetime = datetime.now()
 
     class Config:
         orm_mode=True  

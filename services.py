@@ -5,6 +5,10 @@ import schemas as _schemas
 import email_validator as _email_validator
 import fastapi as _fastapi
 import passlib.hash as _hash
+import jwt as _jwt
+
+_JWT_SECRET = "fdsfdsfdsf"
+
 
 def create_db():
     return _database.Base.metadata.create_all(bind=_database.engine)
@@ -39,3 +43,13 @@ async def create_user(user: _schemas.UserRequest, db: _orm.Session):
     db.commit()
     db.refresh(user_obj)
     return user_obj
+
+async def create_token(user: _models.UserModel):
+    user_schema = _schemas.UserResponse.from_orm(user)
+    print(user_schema)
+    user_dict = user_schema.dict()
+    del user_dict["created_at"]
+
+    token = _jwt.encode(user_dict,_JWT_SECRET)
+
+    return dict(access_token = token, token_type = "brearer")
