@@ -8,7 +8,7 @@ class UserBase(_pydantic.BaseModel):
 
 
 class UserRequest(UserBase):
-    password_hash: str 
+    password: str 
 
     class Config:
         orm_mode=True   

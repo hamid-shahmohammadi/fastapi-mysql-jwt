@@ -6,4 +6,6 @@
 
 pip install fastapi
 pip install "uvicorn[standard]"
+pip install email-validator
+pip freeze > requirements.txt 
 ```
